@@ -58,25 +58,25 @@ try (InputStream in = connection.getInputStream(); OutputStream out = connection
 	* /user/create?userId=testid&password=1234&name=test&email=test@gmail.com
 * uri에 user/create 가 포함되어있는지 확인후 유저 정보를 DataBase에 저장
 
-	```
-	if(uri.contains("/create")) {
-    		String queryString = uri.split("\\?")[1];
-    		
-    		Map<String, String> userInfo = HttpRequestUtils.parseQueryString(queryString);
-    		
-    		String userId = userInfo.getOrDefault("userId", "");
-    		String password = userInfo.getOrDefault("password", "");
-    		String name = userInfo.getOrDefault("name", "");
-    		String email = userInfo.getOrDefault("email", "");
-    		
-    		User user = new User(userId, password, name, email);
-    		
-    		DataBase.addUser(user);
-    		log.debug("add user : {}", user.toString());
-    		
-    		return true;
-    	}
-    	```
+```
+if(uri.contains("/create")) {
+	String queryString = uri.split("\\?")[1];
+
+	Map<String, String> userInfo = HttpRequestUtils.parseQueryString(queryString);
+
+	String userId = userInfo.getOrDefault("userId", "");
+	String password = userInfo.getOrDefault("password", "");
+	String name = userInfo.getOrDefault("name", "");
+	String email = userInfo.getOrDefault("email", "");
+
+	User user = new User(userId, password, name, email);
+
+	DataBase.addUser(user);
+	log.debug("add user : {}", user.toString());
+
+	return true;
+}
+```
  * 
 
 ### 요구사항 3 - post 방식으로 회원가입
